@@ -33,7 +33,7 @@ Script Bash per l'esportazione automatica delle zone DNS configurate in BIND (na
 
 **Esportazione con verifica DNS:**
 ```bash
-./export_zone.sh dns1.evoluzioniweb.it
+./export_zone.sh dns1.example.com
 ```
 
 ## Modalità Operative
@@ -75,7 +75,7 @@ Attivata quando lo script viene eseguito **con il parametro DNS server**.
 
 **Comando di verifica eseguito:**
 ```bash
-dig +short NS dominio.it @dns1.evoluzioniweb.it | grep -i "dns1.evoluzioniweb.it"
+dig +short NS dominio.it @dns1.example.com | grep -i "dns1.example.com"
 ```
 
 **Struttura output:**
@@ -157,15 +157,15 @@ Ogni zona viene esportata in un file `.txt` contenente:
 
 **Esempio di contenuto:**
 ```
-dominio.it.              3600    IN    SOA    dns1.evoluzioniweb.it. postmaster.evoluzioniweb.it. (
+dominio.it.              3600    IN    SOA    dns1.example.com. postmaster.example.com. (
                                        2024010101 ; serial
                                        86400      ; refresh
                                        3600       ; retry
                                        2592000    ; expire
                                        86400      ; default_ttl
                                        )
-dominio.it.              3600    IN    NS     dns1.evoluzioniweb.it.
-dominio.it.              3600    IN    NS     dns2.evoluzioniweb.it.
+dominio.it.              3600    IN    NS     dns1.example.com.
+dominio.it.              3600    IN    NS     dns2.example.com.
 dominio.it.              3600    IN    A      192.168.1.1
 www.dominio.it.          3600    IN    CNAME  dominio.it.
 ```
@@ -211,15 +211,15 @@ Lo script mostra in tempo reale:
 ```
 --- Inizio esportazione zone DNS ---
 Modalità: VERIFICA DNS con settorizzazione attive/inattive
-DNS Server di riferimento: dns1.evoluzioniweb.it
+DNS Server di riferimento: dns1.example.com
 
 Verifica DNS per: dominio1.it
-  -> ATTIVA e agganciata a dns1.evoluzioniweb.it
+  -> ATTIVA e agganciata a dns1.example.com
 Esportazione file: dominio1.it da /etc/named/db.dominio1.it
 SUCCESS: dominio1.it
 
 Verifica DNS per: dominio2.com
-  -> NON agganciata a dns1.evoluzioniweb.it
+  -> NON agganciata a dns1.example.com
 Esportazione file: dominio2.com da /etc/named/db.dominio2.com
 SUCCESS: dominio2.com
 
@@ -228,7 +228,7 @@ I file sono stati salvati in: ./dns_export_20260120
 Generazione report: ./dns_export_20260120/report.txt
 
 Statistiche finali:
-  - Zone attive (agganciate a dns1.evoluzioniweb.it): 150
+  - Zone attive (agganciate a dns1.example.com): 150
   - Zone inattive (non agganciate): 25
   - Totale zone esportate: 175
 
